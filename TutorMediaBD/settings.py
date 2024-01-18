@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-6hiewpvx7$o2b*3ym1unju+37p0elp^0w&9_na650-y8ryr$eg
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://our-library-omv9.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://tutormediabd.onrender.com','https://*.127.0.0.1']
 
 # Application definition
 
