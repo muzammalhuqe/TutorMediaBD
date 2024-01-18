@@ -1,0 +1,66 @@
+{% extends "base.html" %} 
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>Welcome to Your Profile : {{user}} </h1>
+<br>
+{% if messages %}
+  {% for m in messages %}
+    <p class="bg-success p-3 text-white">{{m}}</p>
+  {% endfor %}
+{% endif %}
+<br/>
+
+<h2>Your Tuition Applications:</h2>
+{% if user.tuitionapplication_set.all %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Tuition id</th>
+        <th scope="col">Apply Tuition Subjects</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for application in user.tuitionapplication_set.all %}
+        <tr>
+          <th scope="row">{{ application.tuition.id }}</th>
+          <td><b>{{ application.tuition.subject_name }}</b></td>
+          <td><b>{{ application.status }}</b></td>
+          <td>
+            {% if application.status == 'approved' %}
+              <a class="btn btn-success" href="{% url 'review' application.tuition.id %}">Review Tuition</a>
+              {% elif application.status == 'rejected' %}
+              <a class="btn btn-danger" href="">Rejected</a>
+              {% else %}
+              <a class="btn btn-warning" href="">Pending</a>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+<h4 class="text-danger">You have not applied for any tuition.</h4>
+{% endif %}
+<br>
+<br>
+
+
+<p><a class="btn btn-info" href="{% url 'passchange' %}">Change Your Password</a>
+
+<form method="post" style="width: 80%" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+    {% for er in form.non_field_errors %}
+      <p class="bg-danger text-white p-3">{{er}}</p>
+    {% endfor %}
+    {% endif %}
+    <!-- {{form | crispy }} -->
+    {% for fm in form%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} 
+    {% endfor %}
+    <button class="btn btn-warning" type="submit">Change Data</button>
+</form>
+
+{% endblock %}

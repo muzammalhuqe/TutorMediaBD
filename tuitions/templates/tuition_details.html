@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="col-12">
+  <div class="card m-2">
+    <div class="card-body row">
+      <div class="col-6">
+        <img class="card-img-top" src="{{tuition_details.image.url}}"alt="Card image cap"style="width: 100%"/>
+      </div>
+      <div class="col-6" style="margin-top: 10%">
+        <h1 class="card-title"> Teacher Name : {{ tuition_details.teacher_name }}</h1> <br>
+        <h4 class="card-text"> <b>Subject Name :</b> {{ tuition_details.subject_name }}</h4> <br>
+        <h5><p class="card-text"> <b>Location</b> : {{tuition_details.location }}</p></h5><br>
+        <h5><p class="card-text"> <b>Days</b> : {{tuition_details.tuition_days }}  days/week</p></h5><br>
+        <h5><p class="card-text"> <b>Salary</b> : TK. {{tuition_details.salary }} (Per Month)</p></h5><br>
+        {% if tuition_details.is_available %}
+        <h3>Tuition is Available</h3>
+        {% else %}
+        <h3>Tuition is Not Available</h3>
+        {% endif %}        
+        <br>
+        {% if user.is_authenticated %}
+          <h5><a href="{% url 'tuition_request' tuition_details.id %}" class="card-text btn btn-primary">Apply Tuition</a></h5>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="card m-2">
+    <h5 class="p-3">Total Review : {{comments | length}}</h5>
+    {% for com in comments %}
+    <div class="card-body border m-2">
+      <p><b>{{com.name}}</b> {{com.created_on}}</p>
+      <p>{{com.body}}</p>
+    </div>
+    {% endfor %}
+</div>
+{% comment %} <div class="card m-2">
+    <div class="card-body">
+      <form method="post">
+        <h1>Add Comment</h1>
+        {% csrf_token %} {{comment_form | crispy}}
+        <button class="btn btn-warning">Submit</button>
+      </form>
+    </div>
+</div> {% endcomment %}
+{% comment %} {% if user.is_authenticated %}
+    <div class="card m-2">
+        <div class="card-body">
+            <form method="post">
+                <h1>Student Review</h1>
+                {% csrf_token %} {{ comment_form | crispy }}
+                <button class="btn btn-warning">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endif %} {% endcomment %}
+
+{% endblock %}

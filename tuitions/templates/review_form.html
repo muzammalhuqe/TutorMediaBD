@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>Review for {{ tuition.subject_name }}</h1>
+
+<div class="card m-2">
+    <div class="card-body">
+        <form method="post">
+            <h1>Student Review</h1>
+            {% csrf_token %} {{ comment_form | crispy }}
+            <button class="btn btn-warning">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
