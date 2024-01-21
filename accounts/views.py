@@ -66,14 +66,9 @@ class UserLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy('profile')
 
-# class UserLogoutView(LogoutView):
-#     def get_success_url(self):
-#         return reverse_lazy('homepage')
-    
-def user_logout(request):
-    logout(request)
-    messages.success(request, 'Logged Out Successfully')
-    return redirect('homepage')
+class UserLogoutView(LogoutView):
+    def get_success_url(self):
+        return reverse_lazy('homepage')
     
 
 @login_required
