@@ -13,6 +13,7 @@
 
 <h2>Your Tuition Applications:</h2>
 {% if user.tuitionapplication_set.all %}
+<div class="table-responsive">
   <table class="table">
     <thead>
       <tr>
@@ -41,6 +42,8 @@
       {% endfor %}
     </tbody>
   </table>
+</div>
+  
 {% else %}
 <h4 class="text-danger">You have not applied for any tuition.</h4>
 {% endif %}

@@ -54,7 +54,7 @@
               <li class="nav-item mx-3">
                 <form action="{% url 'logout' %}" method="post">
                   {% csrf_token %}
-                  <button class="btn btn-warning" type="submit">
+                  <button class="nav-link btn btn-danger text-dark" type="submit">
                     Logout
                   </button>
                 </form>
