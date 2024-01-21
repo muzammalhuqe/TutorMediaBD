@@ -41,20 +41,20 @@
             </li>
           </ul>
           <div class="d-md-flex">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 w-100">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               {% if request.user.is_authenticated %}
               
-              <li class="nav-item mx-3">
+              <li class="nav-item mx-0 mx-md-3 mb-3 mb-md-0">
                 <a
-                  class="nav-link btn btn-warning text-dark"
+                  class="nav-link btn btn-warning text-dark mb-2 mb-md-0 mt-3 mt-md-0"
                   href="{% url 'profile' %}"
                   >Profile</a
                 >
               </li>
-              <li class="nav-item mx-3">
+              <li class="nav-item mx-0 mx-md-3 mb-3 mb-md-0">
                 <form action="{% url 'logout' %}" method="post">
                   {% csrf_token %}
-                  <button class="nav-link btn btn-danger text-dark" type="submit">
+                  <button class="nav-link btn btn-danger text-dark mb-2 mb-md-0 mt-3 mt-md-0" type="submit">
                     Logout
                   </button>
                 </form>
@@ -67,7 +67,7 @@
                   >Singup</a
                 >
               </li>
-              <li class="nav-item">
+              <li class="nav-item mx-0 mx-md-3 mb-3 mb-md-0">
                 <a
                   class="nav-link btn btn-warning text-dark"
                   href="{% url 'login' %}"
