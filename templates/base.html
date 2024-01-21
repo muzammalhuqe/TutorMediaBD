@@ -52,11 +52,12 @@
                 >
               </li>
               <li class="nav-item mx-3">
-                <a
-                  class="nav-link btn btn-danger text-dark"
-                  href="{% url 'logout' %}"
-                  >Logout</a
-                >
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit">
+                    Logout
+                  </button>
+                </form>
               </li>
               {% else %}
               <li class="nav-item mx-0 mx-md-3 mb-3 mb-md-0">
