@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth import logout
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -65,9 +66,14 @@ class UserLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy('profile')
 
-class UserLogoutView(LogoutView):
-    def get_success_url(self):
-        return reverse_lazy('homepage')
+# class UserLogoutView(LogoutView):
+#     def get_success_url(self):
+#         return reverse_lazy('homepage')
+    
+def user_logout(request):
+    logout(request)
+    messages.success(request, 'Logged Out Successfully')
+    return redirect('homepage')
     
 
 @login_required
