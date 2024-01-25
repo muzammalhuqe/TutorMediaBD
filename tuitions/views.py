@@ -14,7 +14,7 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
 
 
-def send_approve_email(user, subject, template):
+def send_apply_email(user, subject, template):
         message = render_to_string(template, {
             'user' : user,
         })
@@ -70,7 +70,7 @@ class ApplyTutionView(LoginRequiredMixin, View):
                     status='pending',
                 )
                 application.save()
-                send_approve_email(self.request.user, "Approve Message", "approve_email.html")
+                send_apply_email(self.request.user, "Apply Message", "apply_email.html")
 
                 messages.success(request, 'Application submitted successfully.')
             else:
@@ -79,8 +79,10 @@ class ApplyTutionView(LoginRequiredMixin, View):
         else:
             messages.warning(request, 'This tuition is not available.')
 
-        return redirect('profile')
+        return redirect('apply_tuition')
 
+def apply_tuition(request):
+    return render(request, 'applyed_tuition.html')
 
 
 class Review(DetailView):

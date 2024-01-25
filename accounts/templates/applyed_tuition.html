@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-center">Your Tuition Applications:</h2>
+<br>
+{% if user.tuitionapplication_set.all %}
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Tuition id</th>
+        <th scope="col">Apply Tuition Subjects</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for application in user.tuitionapplication_set.all %}
+        <tr>
+          <th scope="row">{{ application.tuition.id }}</th>
+          <td><b>{{ application.tuition.subject_name }}</b></td>
+          <td><b>{{ application.status }}</b></td>
+          <td>
+            {% if application.status == 'approved' %}
+              <a class="btn btn-success" href="{% url 'review' application.tuition.id %}">Review Tuition</a>
+              {% elif application.status == 'rejected' %}
+              <a class="btn btn-danger" href="">Rejected</a>
+              {% else %}
+              <a class="btn btn-warning" href="">Pending</a>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+  
+{% else %}
+<h4 class="text-danger">You have not applied for any tuition.</h4>
+{% endif %}
+{% endblock  %}

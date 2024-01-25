@@ -19,13 +19,15 @@
       
       <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
       
-      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <link  type="text/css" rel="stylesheet" href="{% static 'style.css' %}">
 
     <title>Tutor Media</title>
   </head>
-  <body style="background-color : #dee2e6">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+  
+  <body class="">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'homepage' %}">TutorMediaBD</a>
         <button
@@ -40,10 +42,10 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class=" menu-item-style navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a
-                class="nav-link active hvr-underline-from-left  mb-2 mb-md-0 mt-3 mt-md-0"
+              <a 
+                class=" nav-link active hvr-underline-from-left  mb-2 mb-md-0 mt-3 mt-md-0"
                 aria-current="page"
                 href="{% url 'homepage' %}"
                 >Home</a
@@ -51,9 +53,16 @@
             </li>
           </ul>
           <div class="d-md-flex">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="menu-item-style navbar-nav me-auto mb-2 mb-lg-0">
               {% if request.user.is_authenticated %}
               
+              <li class="nav-item mx-0 mx-md-3 mb-3 mb-md-0">
+                <a
+                  class="nav-link  text-light mb-2 mb-md-0 mt-3 mt-md-0"
+                  href="{% url 'apply_tuition' %}"
+                  >tuitions</a
+                >
+              </li>
               <li class="nav-item mx-0 mx-md-3 mb-3 mb-md-0">
                 <a
                   class="nav-link  text-light mb-2 mb-md-0 mt-3 mt-md-0"
@@ -69,8 +78,6 @@
                 >
               </li>
 
-
-
                {% comment %} <li class="nav-item mx-0 mx-md-3 mb-3 mb-md-0">
                 <form action="{% url 'logout' %}" method="post">
                   {% csrf_token %}
@@ -78,10 +85,7 @@
                     Logout
                   </button>
                 </form>
-              </li>  {% endcomment %}
-
-
-
+              </li> {% endcomment %}
 
               {% else %}
               <li class="nav-item mx-0 mx-md-3 mb-3 mb-md-0">
@@ -105,9 +109,6 @@
       </div>
     </nav>
 
-
-
-
     {% for i in messages %}
     <div class="">
       <h3 class="text-{{i.tags}}">{{i}}</h3>
@@ -121,7 +122,6 @@
 
     {% comment %} footer {% endcomment %}
 
-    
 <!-- Remove the container if you want to extend the Footer to full width. -->
 <div class="pt-5">
   <!-- Footer -->
@@ -136,7 +136,7 @@
              >
       <!-- Left -->
       <div class="me-5">
-        <span>Get connected with us on social networks:</span>
+        <h3>Get connected with us on social networks :</h3>
       </div>
       <!-- Left -->
 
@@ -150,7 +150,7 @@
             data-mdb-ripple-init
               class="btn text-white btn-floating m-1"
               style="background-color: #3b5998;"
-              href="#!"
+              href="https://web.facebook.com/?_rdc=1&_rdr" target="_blank" rel="noopener noreferrer"
               role="button"
               ><i class="fab fa-facebook-f"></i
             ></a>
@@ -160,7 +160,7 @@
               data-mdb-ripple-init
               class="btn text-white btn-floating m-1"
               style="background-color: #55acee;"
-              href="#!"
+              href="https://twitter.com/" target="_blank" rel="noopener noreferrer"
               role="button"
               ><i class="fab fa-twitter"></i
             ></a>
@@ -170,7 +170,7 @@
               data-mdb-ripple-init
               class="btn text-white btn-floating m-1"
               style="background-color: #dd4b39;"
-              href="#!"
+              href="https://www.google.com/" target="_blank" rel="noopener noreferrer"
               role="button"
               ><i class="fab fa-google"></i
             ></a>
@@ -180,7 +180,7 @@
               data-mdb-ripple-init
               class="btn text-white btn-floating m-1"
               style="background-color: #ac2bac;"
-              href="#!"
+              href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
               role="button"
               ><i class="fab fa-instagram"></i
             ></a>
@@ -190,7 +190,7 @@
               data-mdb-ripple-init
               class="btn text-white btn-floating m-1"
               style="background-color: #0082ca;"
-              href="#!"
+              href="https://bd.linkedin.com/" target="_blank" rel="noopener noreferrer"
               role="button"
               ><i class="fab fa-linkedin-in"></i
             ></a>
@@ -199,7 +199,7 @@
               data-mdb-ripple-init
               class="btn text-white btn-floating m-1"
               style="background-color: #333333;"
-              href="#!"
+              href="https://github.com/" target="_blank" rel="noopener noreferrer"
               role="button"
               ><i class="fab fa-github"></i
             ></a>
@@ -207,26 +207,6 @@
 
         <!-- Grid container -->
       </footer>
-      {% comment %} <div>
-        <a href="" class="text-white  me-4">
-          <i class="fa-brands fa-facebook" ></i>
-        </a>
-        <a href="" class="text-white me-4">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="" class="text-white me-4">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="" class="text-white me-4">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="" class="text-white me-4">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="" class="text-white me-4">
-          <i class="fab fa-github"></i>
-        </a>
-      </div> {% endcomment %}
       <!-- Right -->
     </section>
     <!-- Section: Social media -->
@@ -282,16 +262,13 @@
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
             <p>
-              <a href="#!" class="text-white">Your Account</a>
+              <a href="{% url 'singup' %}" class="text-white">Signup for tuition</a>
             </p>
             <p>
-              <a href="#!" class="text-white">Become an Affiliate</a>
+              <a href="{% url 'login' %}" class="text-white">Signin for tuition</a>
             </p>
             <p>
-              <a href="#!" class="text-white">Shipping Rates</a>
-            </p>
-            <p>
-              <a href="#!" class="text-white">Help</a>
+              <a href="#!" class="text-white">About tuiton</a>
             </p>
           </div>
           <!-- Grid column -->
@@ -304,9 +281,9 @@
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
-            <p><i class="fas fa-home mr-3"></i> Baya Bazar, Airport, Rajshahi</p>
-            <p><i class="fas fa-envelope mr-3"></i>muzammalraj@gmail.com</p>
-            <p><i class="fas fa-phone mr-3"></i>01722202101</p>
+            <p><i class="fas fa-home mr-3"></i>  Baya Bazar, Airport, Rajshahi</p>
+            <p><i class="fas fa-envelope mr-3"></i>  muzammalraj@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i>  01722202101</p>
           </div>
           <!-- Grid column -->
         </div>

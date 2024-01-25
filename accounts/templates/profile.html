@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-{% comment %} <h1>Welcome to Your Profile : {{user}} </h1> {% endcomment %}
+<h1 class="text-center mt-3">Welcome to Your Profile : {{user}} </h1>
 <br>
 {% if messages %}
   {% for m in messages %}
@@ -11,60 +11,21 @@
 {% endif %}
 <br/>
 
-<h2 class="text-center">Your Tuition Applications:</h2>
-<br>
-{% if user.tuitionapplication_set.all %}
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Tuition id</th>
-        <th scope="col">Apply Tuition Subjects</th>
-        <th scope="col">Status</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for application in user.tuitionapplication_set.all %}
-        <tr>
-          <th scope="row">{{ application.tuition.id }}</th>
-          <td><b>{{ application.tuition.subject_name }}</b></td>
-          <td><b>{{ application.status }}</b></td>
-          <td>
-            {% if application.status == 'approved' %}
-              <a class="btn btn-success" href="{% url 'review' application.tuition.id %}">Review Tuition</a>
-              {% elif application.status == 'rejected' %}
-              <a class="btn btn-danger" href="">Rejected</a>
-              {% else %}
-              <a class="btn btn-warning" href="">Pending</a>
-            {% endif %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-  
-{% else %}
-<h4 class="text-danger">You have not applied for any tuition.</h4>
-{% endif %}
-<br>
-<br>
 
-
-<p><a class="btn btn-info" href="{% url 'passchange' %}">Change Your Password</a>
-
-<form method="post" style="width: 80%" novalidate>
-    {% csrf_token %}
-    {% if form.non_field_errors %}
-    {% for er in form.non_field_errors %}
-      <p class="bg-danger text-white p-3">{{er}}</p>
-    {% endfor %}
-    {% endif %}
-    <!-- {{form | crispy }} -->
-    {% for fm in form%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} 
-    {% endfor %}
-    <button class="btn btn-warning" type="submit">Change Data</button>
+<form method="post" style="width: 50%;" novalidate>
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+  {% for er in form.non_field_errors %}
+  <p class="bg-danger text-white p-3">{{er}}</p>
+  {% endfor %}
+  {% endif %}
+  <!-- {{form | crispy }} -->
+  {% for fm in form%} {{fm.label_tag}} {{fm}} 
+  <p class="text-danger">{{fm.errors|striptags}} </p>
+  {% endfor %}
+  <br />
+  <button class="btn btn-warning" type="submit">Edit Profile</button>
 </form>
-
+<br>
+<p><a class="btn btn-info" href="{% url 'passchange' %}">Change Your Password</a>
 {% endblock %}
