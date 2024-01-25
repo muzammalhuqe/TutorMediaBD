@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<div class="d-flex flex-wrap px-5 pt-3 align-items-center">
+
+
+<div class="d-flex flex-wrap px-5 pt-3 align-items-center ">
   <div class="col-12 col-md-6">
     <h1>Welcome to TutorMediaBD</h1>
     <p>
@@ -13,9 +15,65 @@
   </div>
 </div>
 
+<br>
+<br>
 
-<div class="row p-4">
-    <div class="col-12 col-lg-2 col-sm-4 bg-white p-3" >
+<div class="swiffy-slider slider-item-reveal slider-nav-round slider-item-ratio slider-item-ratio-21x9" id="slider1">
+  <ul class="slider-container">
+      <li><img src="{% static 'img/c2.png' %}" loading="lazy" alt="..."></li>
+      <li><img src="{% static 'img/c1.png' %}" loading="lazy" alt="..."></li>
+      <li><img src="{% static 'img/c6.png' %}" loading="lazy" alt="..."></li>
+      <li><img src="{% static 'img/c4.png' %}" loading="lazy" alt="..."></li>
+  </ul>
+
+  <button type="button" class="slider-nav" aria-label="Go left"></button>
+  <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+  <div class="slider-indicators slider-indicators-square d-none d-md-flex">
+      <button class="" aria-label="Go to slide"></button>
+      <button aria-label="Go to slide" class="active"></button>
+      <button aria-label="Go to slide"></button>
+      <button aria-label="Go to slide"></button>
+  </div>
+
+  <div class="slider-indicators slider-indicators-sm slider-indicators-dark slider-indicators-round d-md-none slider-indicators-highlight">
+      <button class="" aria-label="Go to slide"></button>
+      <button aria-label="Go to slide" class="active"></button>
+      <button aria-label="Go to slide"></button>
+      <button aria-label="Go to slide"></button>
+  </div>
+</div>
+
+<br>
+<br>
+
+        <h3 class="text-center">Filter  Your Department Tuitions</h3>
+        <div class="swiffy-slider slider-item-show3 slider-nav-dark slider-nav-visible slider-nav-outside slider-item-snapstart my-3 slider-nav-sm my-xl-5 slider-indicators-square slider-indicators-outside slider-indicators-dark slider-nav-animation-slideup slider-nav-animation slider-item-first-visible">
+            <div class="slider-container">
+                {% for cat in categories %}
+                <div class="slide-visible">
+                    <div>
+                        <h3 class="mb-0 h6" style="color:#DF1E1E;"></h3>
+                        <a href="{% url 'tuition_wise_category' cat.slug %}" class="text-decoration-none text-light btn btn-primary" >{{cat.classes}}</a>
+                        <small class="text-muted text-uppercase"></small>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" class="slider-nav" aria-label="Go left"></button>
+            <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+            <div class="slider-indicators" style="justify-content:right;margin-left: 3rem;">
+                <button class="active" aria-label="Go to slide"></button>
+                <button aria-label="Go to slide" class=""></button>
+                <button aria-label="Go to slide" class=""></button>
+                <button aria-label="Go to slide" class=""></button>
+                <button aria-label="Go to slide" class=""></button>
+                <button aria-label="Go to slide" class=""></button>
+            </div>
+        </div>
+
+<div class="row p-5">
+    {% comment %} <div class="col-12 col-lg-2 col-sm-4 bg-white p-3" >
       <h5>All Classes Tuition</h5>
       {% for cat in categories %}
       <div class="form-check">
@@ -24,8 +82,8 @@
           <a href="{% url 'tuition_wise_category' cat.slug %}" class="text-decoration-none" >{{cat.classes}}</a> </label>
       </div>
       {% endfor %}
-    </div>
-    <div class="col-12 col-lg-10 col-sm-8 p-3">
+    </div> {% endcomment %}
+    <div class="col-12 col-lg-12 col-sm-12 p-3">
       <h4 class="text-bg-primary">{{data | length}} results found</h4>
       <div class="row pt-5">
         {% for d in data %}

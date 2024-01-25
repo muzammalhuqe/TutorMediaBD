@@ -29,6 +29,7 @@ class UserRegistrationView(CreateView):
     
     def form_valid(self, form):
         form.instance.created_by = self.request.user
+        # self.request.user.is_active = False
         user = form.save()
         token = default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))

@@ -42,7 +42,8 @@ class RegistrationForm(UserCreationForm):
         account = User(username = username, email=email, first_name = first_name, last_name = last_name)
         print(account)
         account.set_password(password)
-        account.is_active = False
+        # account.is_active = False
+        # print(account.is_active)
         account.save()
         return account
     

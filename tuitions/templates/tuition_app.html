@@ -1,18 +1,7 @@
-{% extends "base.html" %} 
-{% load crispy_forms_tags %}
+{% extends "base.html" %}
 {% block content %}
 
-{% comment %} <h1>Welcome to Your Profile : {{user}} </h1> {% endcomment %}
-<br>
-{% if messages %}
-  {% for m in messages %}
-    <p class="bg-success p-3 text-white">{{m}}</p>
-  {% endfor %}
-{% endif %}
-<br/>
-
-<h2 class="text-center">Your Tuition Applications:</h2>
-<br>
+<h2>Your Tuition Applications:</h2>
 {% if user.tuitionapplication_set.all %}
 <div class="table-responsive">
   <table class="table">
@@ -44,27 +33,4 @@
     </tbody>
   </table>
 </div>
-  
-{% else %}
-<h4 class="text-danger">You have not applied for any tuition.</h4>
-{% endif %}
-<br>
-<br>
-
-
-<p><a class="btn btn-info" href="{% url 'passchange' %}">Change Your Password</a>
-
-<form method="post" style="width: 80%" novalidate>
-    {% csrf_token %}
-    {% if form.non_field_errors %}
-    {% for er in form.non_field_errors %}
-      <p class="bg-danger text-white p-3">{{er}}</p>
-    {% endfor %}
-    {% endif %}
-    <!-- {{form | crispy }} -->
-    {% for fm in form%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} 
-    {% endfor %}
-    <button class="btn btn-warning" type="submit">Change Data</button>
-</form>
-
-{% endblock %}
+{% endblock  %}

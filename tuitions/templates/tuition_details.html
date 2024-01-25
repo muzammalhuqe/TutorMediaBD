@@ -2,13 +2,49 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="col-12">
+
+
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <div class="col-5">
+      <div class="card d-flex flex-column" style="min-height:500px" >
+        <div class="card-body text-center" >
+          <img class="img-fluid" style="" src="{{tuition_details.image.url}}" alt="Card image cap">
+        </div>
+      </div>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-5">
+      <div class="card d-flex flex-column" style="min-height:500px" >
+        <div class="card-body text-center" >
+        <h2 class="card-title">Name : {{ tuition_details.teacher_name }}</h2> <br>
+        <h5 class="text-dark"> <b>Subject Name :</b> {{ tuition_details.subject_name }}</h5><br>
+        <p class="text-dark"> <b>Location</b> : {{tuition_details.location }}</p>
+        <p class="text-dark"> <b>Days</b> : {{tuition_details.tuition_days }}  days/week</p>
+        <p class="text-dark"> <b>Salary</b> : TK. {{tuition_details.salary }} (Per Month)</p>
+        {% if tuition_details.is_available %}
+        <h5>Tuition is Available</h5>
+        {% else %}
+        <h5>Tuition is Not Available</h5>
+        {% endif %}
+        <br>  
+        {% if user.is_authenticated %}
+          <h6><a href="{% url 'tuition_request' tuition_details.id %}" class=" btn btn-primary">Apply Tuition</a></h6>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% comment %} <div class="row">
   <div class="card m-2">
     <div class="card-body row">
-      <div class="col-6">
-        <img class="card-img-top" src="{{tuition_details.image.url}}"alt="Card image cap"style="width: 100%"/>
+      <div class="col-12 col-md-6">
+        <img class="card-img-top" src="{{tuition_details.image.url}}"alt="Card image cap"style="width: 75%"/>
       </div>
-      <div class="col-6" style="margin-top: 10%">
+      <div class="col-12 col-md-6" style="margin-top: 10%">
         <h1 class="card-title"> Teacher Name : {{ tuition_details.teacher_name }}</h1> <br>
         <h4 class="card-text"> <b>Subject Name :</b> {{ tuition_details.subject_name }}</h4> <br>
         <h5><p class="card-text"> <b>Location</b> : {{tuition_details.location }}</p></h5><br>
@@ -26,7 +62,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> {% endcomment %}
 
 
 <div class="card m-2">
@@ -38,25 +74,4 @@
     </div>
     {% endfor %}
 </div>
-{% comment %} <div class="card m-2">
-    <div class="card-body">
-      <form method="post">
-        <h1>Add Comment</h1>
-        {% csrf_token %} {{comment_form | crispy}}
-        <button class="btn btn-warning">Submit</button>
-      </form>
-    </div>
-</div> {% endcomment %}
-{% comment %} {% if user.is_authenticated %}
-    <div class="card m-2">
-        <div class="card-body">
-            <form method="post">
-                <h1>Student Review</h1>
-                {% csrf_token %} {{ comment_form | crispy }}
-                <button class="btn btn-warning">Submit</button>
-            </form>
-        </div>
-    </div>
-{% endif %} {% endcomment %}
-
 {% endblock %}

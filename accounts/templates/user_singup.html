@@ -1,14 +1,21 @@
 {% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %} 
-
-<form method="post" style="width: 50%; margin: auto" novalidate>
-  <h1>Signup Page</h1>
-  {% csrf_token %}
-  <!-- {{form | crispy }} -->
-  {% for fm in form%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} {% endfor %}
-  <br />
-  <button class="btn btn-primary" type="submit">Submit</button>
-  <br />
-   <small>Already have an Account <a href="{% url 'login' %}">Login</a></small>
-</form>
-
+{% load static %}
+<div class="row shadow p-3 mb-5 bg-white m-5" style="border-radius: 5%">
+  <div class="col-6">
+    <img style="width: 100%;  margin: auto" class="mt-5" src="{% static 'img/singup.png' %}" alt="image">
+  </div>
+  <div class="col-6">
+    <form method="post"style="width: 80%; margin: auto;" class="mt-2" novalidate>
+      <h1>Signup Page</h1>
+      <br>
+      {% csrf_token %}
+      <!-- {{form | crispy }} -->
+      {% for fm in form%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} {% endfor %}
+      <br />
+      <button class="btn btn-primary" type="submit">Submit</button>
+      <br />
+       <small>Already have an Account <a href="{% url 'login' %}">Login</a></small>
+    </form>
+  </div>
+</div>
 {% endblock %}
