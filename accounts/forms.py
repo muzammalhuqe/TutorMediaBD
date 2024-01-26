@@ -43,11 +43,7 @@ class RegistrationForm(UserCreationForm):
             raise forms.ValidationError({'error' : "Email Already exists"})
         
         account = User(username = username, email=email, first_name = first_name, last_name = last_name)
-
-        print(account)
         account.set_password(password)
-        # account.is_active = False
-        # print(account.is_active)
         account.save()
         return account
     
@@ -69,16 +65,6 @@ class UserUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # for field in self.fields:
-        #     self.fields[field].widget.attrs.update({
-        #         'class': (
-        #             'appearance-none block w-full bg-gray-200 '
-        #             'text-gray-700 border border-gray-200 rounded '
-        #             'py-3 px-4 leading-tight focus:outline-none '
-        #             'focus:bg-white focus:border-gray-500'
-        #         )
-        #     })
-        # jodi user er account thake 
         if self.instance:
             try:
                 user_account = self.instance.account

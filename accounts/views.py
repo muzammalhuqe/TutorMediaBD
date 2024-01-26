@@ -21,8 +21,6 @@ from .forms import UserUpdateForm
 from .models import UserAccount
 
 
-
-
 class UserRegistrationView(CreateView):
     form_class = RegistrationForm
     template_name = 'user_singup.html'
@@ -57,23 +55,6 @@ class UserRegistrationView(CreateView):
         email.attach_alternative(email_body, "text/html")
         email.send()
         return redirect('login')
-    
-
-    # def form_valid(self, form):
-    #     form.instance.created_by = self.request.user
-    #     user = form.save(commit=False)
-    #     user.is_active = False
-    #     user.save()
-    #     token = default_token_generator.make_token(user)
-    #     uid = urlsafe_base64_encode(force_bytes(user.pk))
-    #     confirm_link = f"https://tutormediabd.onrender.com/accounts/active/{uid}/{token}"
-    #     email_subject = "Confirm Your Email"
-    #     email_body = render_to_string('confirm_email.html', {'confirm_link' : confirm_link})
-            
-    #     email = EmailMultiAlternatives(email_subject , '', to=[user.email])
-    #     email.attach_alternative(email_body, "text/html")
-    #     email.send()
-    #     return redirect('login')
 
 
 def activate(request, uid64, token):
@@ -99,9 +80,16 @@ class UserLoginView(LoginView):
     #     messages.success(self.request, "Login successfully. Welcome Back!")
     #     return super().form_valid(form)
 
-class UserLogoutView(LogoutView):
-    def get_success_url(self):
-        return reverse_lazy('homepage')
+
+# class UserLogoutView(LogoutView):
+#     def get_success_url(self):
+#         return reverse_lazy('homepage')
+    
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
     
 
 @login_required
