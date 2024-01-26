@@ -2,6 +2,7 @@ from django.views.generic import DetailView
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -21,6 +22,8 @@ def send_apply_email(user, subject, template):
         send_email = EmailMultiAlternatives(subject, '', to=[user.email])
         send_email.attach_alternative(message, "text/html")
         send_email.send()
+
+
 
 class DetailTuitionView(DetailView):
     model = TutionDetails
@@ -81,6 +84,7 @@ class ApplyTutionView(LoginRequiredMixin, View):
 
         return redirect('apply_tuition')
 
+
 def apply_tuition(request):
     return render(request, 'applyed_tuition.html')
 
@@ -108,7 +112,9 @@ class Review(DetailView):
         context ['comments'] = comments
         context ['comment_form'] = comment_form
         return context
-    
+
+
+
 class ContactUsView(View):
     template_name = 'contact_page.html'
     success_url = reverse_lazy('contact_us')

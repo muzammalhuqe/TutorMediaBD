@@ -8,6 +8,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['classes', 'slug']
 
 
+
 admin.site.register(models.Tution, CategoryAdmin)
 admin.site.register(models.TutionDetails)
 admin.site.register(models.TuitionApplication)

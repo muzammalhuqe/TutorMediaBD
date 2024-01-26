@@ -3,12 +3,13 @@
 {% block content %} 
 {% load static %}
 
-
-
 <div class="shadow p-3 mb-5 bg-white m-5" style="border-radius: 50px">
     <h1 class="text-center">login Page</h1>
     <hr>
     <div class="row">
+        <div class="col-12 col-md-6">
+            <img style="width: 60%; margin: auto" src="{% static 'img/login.png' %}" alt="image">
+        </div>
         <div class="col-12 col-md-6 ">
             <form class="login-form-style" method="post"  novalidate>
                 <br>
@@ -28,9 +29,7 @@
                 <small>Don't have an Account <a href="{% url 'singup' %}">Signup</a></small>
             </form>
         </div>
-        <div class="col-12 col-md-6">
-            <img style="width: 60%; margin: auto" src="{% static 'img/login.png' %}" alt="image">
-        </div>
+        
     </div>
 </div>
 

@@ -8,9 +8,9 @@ class RegistrationForm(UserCreationForm):
     last_name = forms.CharField(widget=forms.TextInput(attrs={'id' : 'required'}))
     email = forms.CharField(widget=forms.EmailInput(attrs={'id' : 'required'}))
     ssc_roll = forms.CharField(widget=forms.TextInput(attrs={'id' : 'required'}))
-    ssc_gpa = forms.CharField(widget=forms.TextInput(attrs={'id' : 'required'}))
+    ssc_gpa = forms.DecimalField(widget=forms.TextInput(attrs={'id' : 'required'}))
     hsc_roll = forms.CharField(widget=forms.TextInput(attrs={'id' : 'required'}))
-    hsc_gpa = forms.CharField(widget=forms.TextInput(attrs={'id' : 'required'}))
+    hsc_gpa = forms.DecimalField(widget=forms.TextInput(attrs={'id' : 'required'}))
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email','ssc_roll','ssc_gpa','hsc_roll','hsc_gpa','password1', 'password2']

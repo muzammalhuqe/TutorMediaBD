@@ -29,8 +29,9 @@ class UserRegistrationView(CreateView):
     
     def form_valid(self, form):
         form.instance.created_by = self.request.user
-        self.request.user.is_active = False
-        user = form.save()
+        user = form.save(commit=False)
+        user.is_active = False
+        user.save()
         token = default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         confirm_link = f"http://127.0.0.1:8000/accounts/active/{uid}/{token}"
@@ -40,32 +41,31 @@ class UserRegistrationView(CreateView):
         email = EmailMultiAlternatives(email_subject , '', to=[user.email])
         email.attach_alternative(email_body, "text/html")
         email.send()
-        # return redirect("Check your mail for confirmation")
-        # return super().form_valid(form)
         return redirect('login')
 
 
 def activate(request, uid64, token):
     try:
         uid = urlsafe_base64_decode(uid64).decode()
-        user = User._default_manager.get(pk=uid)
-    except(User.DoesNotExist):
-        user = None 
-    
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
         return redirect('login')
     else:
-        return redirect('singup')
-
-
+        return redirect('signup')
 
 
 class UserLoginView(LoginView):
     template_name = 'user_login.html'
     def get_success_url(self):
         return reverse_lazy('profile')
+    # def form_valid(self, form):
+    #     messages.success(self.request, "Login successfully. Welcome Back!")
+    #     return super().form_valid(form)
 
 class UserLogoutView(LogoutView):
     def get_success_url(self):
@@ -86,7 +86,7 @@ def profile(request):
 
     return render(request, 'profile.html', {'form': form})
 
-
+@login_required
 def pass_change(request):
     if request.user.is_authenticated:
         if request.method == 'POST':

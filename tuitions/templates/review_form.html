@@ -3,8 +3,21 @@
 
 {% block content %}
 
-
-<div class="card m-2">
+<div class=" back_style">
+    <div class=" shadow p-3 mb-5 bg-white my-5 rounded-lg" style="border-radius: 50px">
+      <div class="row">
+        <h1 class="text-center pb-4">Student Review</h1>
+        <hr>
+        <form method="post" class="mt-2 profiles-form-style" novalidate>
+            <form method="post">
+                {% csrf_token %} {{ comment_form | crispy }}
+                <button class="btn btn-primary rounded-pill mt-3">Submit</button>
+            </form>
+        </form>
+      </div>
+    </div>
+  </div>
+{% comment %} <div class="card m-2">
     <div class="card-body">
         <form method="post">
             <h1>Student Review</h1>
@@ -12,6 +25,6 @@
             <button class="btn btn-warning">Submit</button>
         </form>
     </div>
-</div>
+</div> {% endcomment %}
 
 {% endblock %}

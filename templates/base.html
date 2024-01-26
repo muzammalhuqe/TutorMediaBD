@@ -25,7 +25,7 @@
   </head>
 
   
-  <body class="">
+  <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
       <div class="container-fluid">
@@ -127,7 +127,9 @@
     
     {% endfor %} 
     
-    {% block content %} {% endblock %}
+    <div class="container">
+      {% block content %} {% endblock %}
+    </div>
 
 
     {% comment %} footer {% endcomment %}
@@ -136,21 +138,88 @@
 <div class="pt-5">
   <!-- Footer -->
   <footer
-          class="text-center text-lg-start text-white"
+          class="text-center text-lg-start text-white pt-2"
           style="background-color: #1c2331"
           >
-    <!-- Section: Social media -->
-    <section
-             class="d-flex justify-content-between p-4"
-             style="background-color: #6351ce"
-             >
-      <!-- Left -->
-      <div class="me-5">
-        <h3>Get connected with us on social networks :</h3>
-      </div>
-      <!-- Left -->
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase text-center text-light fw-bold">About Us</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 100%; background-color: #7c4dff; height: 2px"
+                />
+            <p class="text-center">
+              TuitionMediaBD is a very easy way find online & offline tuitors and tuitions, We can help students and tuitors find each other.
+            </p>
+          </div>
+          <!-- Grid column -->
 
-      <!-- Right -->
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-center text-uppercase text-light fw-bold">Information</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 100%; background-color: #7c4dff; height: 2px"
+                />
+            <p class="text-white text-center">Home Tuitiors</p>
+              
+            
+            <p class="text-white text-center"> Online Tuitiors</p>
+             
+            <p class="text-white text-center">Premium Tuitiors</p>
+              
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-center text-uppercase text-light fw-bold">Useful links</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 100%; background-color: #7c4dff; height: 2px"
+                />
+            <p class="text-center">
+              <a href="{% url 'singup' %}" class="text-white text-decoration-none">Signup for tuition</a>
+            </p>
+            <p class="text-center">
+              <a href="{% url 'login' %}" class="text-white text-decoration-none">Signin for tuition</a>
+            </p>
+            <p class="text-center">
+              <a href=" {% url 'contact_us' %}" class="text-white text-decoration-none ">Contact Us</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-center text-uppercase text-light fw-bold">Contact</h6>
+            <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 100%; background-color: #7c4dff; height: 2px"
+                />
+            <p class="text-center"><i class="fas fa-home mr-3"></i>  Baya Bazar, Airport, Rajshahi</p>
+            <p class="text-center"><i class="fas fa-envelope mr-3"></i>  muzammalraj@gmail.com</p>
+            <p class="text-center"><i class="fas fa-phone mr-3"></i>  01722202101</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="container p- pb-3">
+      <!-- Section: Social media -->
       <footer class="bg-body-tertiary text-center">
         <!-- Grid container -->
 
@@ -217,100 +286,17 @@
 
         <!-- Grid container -->
       </footer>
-      <!-- Right -->
-    </section>
-    <!-- Section: Social media -->
-
-    <!-- Section: Links  -->
-    <section class="">
-      <div class="container text-center text-md-start mt-5">
-        <!-- Grid row -->
-        <div class="row mt-3">
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <!-- Content -->
-            <h6 class="text-uppercase text-light fw-bold">About Us</h6>
-            <hr
-                class="mb-4 mt-0 d-inline-block mx-auto"
-                style="width: 60px; background-color: #7c4dff; height: 2px"
-                />
-            <p>
-              TuitionMediaBD Tution Media is a very easy way find online tutors and tuition, We can help students and tutors find each other
-            </p>
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase text-light fw-bold">Information</h6>
-            <hr
-                class="mb-4 mt-0 d-inline-block mx-auto"
-                style="width: 60px; background-color: #7c4dff; height: 2px"
-                />
-            <p class="text-white">Home Tuitiors</p>
-              
-            
-            <p class="text-white"> Online Tuitiors</p>
-             
-            <p class="text-white">Premium Tuitiors</p>
-              
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase text-light fw-bold">Useful links</h6>
-            <hr
-                class="mb-4 mt-0 d-inline-block mx-auto"
-                style="width: 60px; background-color: #7c4dff; height: 2px"
-                />
-            <p>
-              <a href="{% url 'singup' %}" class="text-white">Signup for tuition</a>
-            </p>
-            <p>
-              <a href="{% url 'login' %}" class="text-white">Signin for tuition</a>
-            </p>
-            <p>
-              <a href=" {% url 'contact_us' %}" class="text-white">Contact Us</a>
-            </p>
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase text-light fw-bold">Contact</h6>
-            <hr
-                class="mb-4 mt-0 d-inline-block mx-auto"
-                style="width: 60px; background-color: #7c4dff; height: 2px"
-                />
-            <p><i class="fas fa-home mr-3"></i>  Baya Bazar, Airport, Rajshahi</p>
-            <p><i class="fas fa-envelope mr-3"></i>  muzammalraj@gmail.com</p>
-            <p><i class="fas fa-phone mr-3"></i>  01722202101</p>
-          </div>
-          <!-- Grid column -->
-        </div>
-        <!-- Grid row -->
-      </div>
-    </section>
-    <!-- Section: Links  -->
-
-    <!-- Copyright -->
+      <!-- Section: Social media -->
+    </div>
     <div
          class="text-center p-3"
          style="background-color: rgba(0, 0, 0, 0.2)"
          >
-      © 2024 Copyright :
-      <a class="text-white" href="https://mdbootstrap.com/"
-         >muzammalraj</a
-        >
+      © 2024 Copyright : muzammalraj
     </div>
     <!-- Copyright -->
   </footer>
   <!-- Footer -->
-
 </div>
 <!-- End of .container -->
 

@@ -3,72 +3,47 @@
 {% block content %}
 
 
-
-<div class="container">
-  <div class="d-flex justify-content-between align-items-center mt-3">
-    <div class="col-5">
-      <div class="card d-flex flex-column" style="min-height:500px" >
-        <div class="card-body text-center" >
-          <img class="img-fluid" style="" src="{{tuition_details.image.url}}" alt="Card image cap">
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <div class="col-10 col-sm-6 col-md-4">
+        <div class="card" style="min-height:500px" >
+          <div class="card-body text-center" >
+            <img class="img-fluid" style="" src="{{tuition_details.image.url}}" alt="Card image cap">
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-10 col-sm-6 col-md-4 ">
+        <div class="card" style="min-height:500px" >
+          <div class="card-body" >
+          <h4 class="card-title">Name : {{ tuition_details.teacher_name }}</h4> <br>
+          <p class="text-dark"> <b>Subject Name :</b> {{ tuition_details.subject_name }}</p>
+          <p class="text-dark"> <b>Location</b> : {{tuition_details.location }}</p>
+          <p class="text-dark"> <b>Days</b> : {{tuition_details.tuition_days }}  days/week</p>
+          <p class="text-dark"> <b>Salary</b> : TK. {{tuition_details.salary }} (Per Month)</p>
+          <br>
+          {% if tuition_details.is_available %}
+          <h5 class="btn btn-success">Tuitions Available</h5>
+          {% else %}
+          <h5 class="btn btn-danger w-75">Tuitions Not Available</h5>
+          {% endif %}
+          <br>
+          <br>
+          {% if user.is_authenticated %}
+            <h6><a href="{% url 'tuition_request' tuition_details.id %}" class=" btn btn-primary w-50 rounded-pill">Apply Tuition</a></h6>
+          {% else %}
+            <h6><a href="{% url 'login' %}" class=" btn btn-primary w-50 rounded-pill">Apply Tuition</a></h6>
+          {% endif %}
+          </div>
         </div>
       </div>
     </div>
     <div class="col-2"></div>
-    <div class="col-5">
-      <div class="card d-flex flex-column" style="min-height:500px" >
-        <div class="card-body text-center" >
-        <h2 class="card-title">Name : {{ tuition_details.teacher_name }}</h2> <br>
-        <h5 class="text-dark"> <b>Subject Name :</b> {{ tuition_details.subject_name }}</h5><br>
-        <p class="text-dark"> <b>Location</b> : {{tuition_details.location }}</p>
-        <p class="text-dark"> <b>Days</b> : {{tuition_details.tuition_days }}  days/week</p>
-        <p class="text-dark"> <b>Salary</b> : TK. {{tuition_details.salary }} (Per Month)</p>
-        {% if tuition_details.is_available %}
-        <h5>Tuition is Available</h5>
-        {% else %}
-        <h5>Tuition is Not Available</h5>
-        {% endif %}
-        <br>  
-        {% if user.is_authenticated %}
-          <h6><a href="{% url 'tuition_request' tuition_details.id %}" class=" btn btn-primary">Apply Tuition</a></h6>
-        {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
-{% comment %} <div class="row">
-  <div class="card m-2">
-    <div class="card-body row">
-      <div class="col-12 col-md-6">
-        <img class="card-img-top" src="{{tuition_details.image.url}}"alt="Card image cap"style="width: 75%"/>
-      </div>
-      <div class="col-12 col-md-6" style="margin-top: 10%">
-        <h1 class="card-title"> Teacher Name : {{ tuition_details.teacher_name }}</h1> <br>
-        <h4 class="card-text"> <b>Subject Name :</b> {{ tuition_details.subject_name }}</h4> <br>
-        <h5><p class="card-text"> <b>Location</b> : {{tuition_details.location }}</p></h5><br>
-        <h5><p class="card-text"> <b>Days</b> : {{tuition_details.tuition_days }}  days/week</p></h5><br>
-        <h5><p class="card-text"> <b>Salary</b> : TK. {{tuition_details.salary }} (Per Month)</p></h5><br>
-        {% if tuition_details.is_available %}
-        <h3>Tuition is Available</h3>
-        {% else %}
-        <h3>Tuition is Not Available</h3>
-        {% endif %}        
-        <br>
-        {% if user.is_authenticated %}
-          <h5><a href="{% url 'tuition_request' tuition_details.id %}" class="card-text btn btn-primary">Apply Tuition</a></h5>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</div> {% endcomment %}
-
-
-<div class="card m-2">
-    <h5 class="p-3">Total Review : {{comments | length}}</h5>
+<div class="card mt-5">
+    <h3 class="p-3 text-center">Total Review : {{comments | length}}</h3>
     {% for com in comments %}
-    <div class="card-body border m-2">
+    <div class="card-body border border-3 m-2 rounded-pill text-center">
       <p><b>{{com.name}}</b> {{com.created_on}}</p>
       <p>{{com.body}}</p>
     </div>
