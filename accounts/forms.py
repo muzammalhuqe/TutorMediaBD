@@ -39,7 +39,11 @@ class RegistrationForm(UserCreationForm):
         email = self.cleaned_data['email']
         password = self.cleaned_data['password1']
 
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError({'error' : "Email Already exists"})
+        
         account = User(username = username, email=email, first_name = first_name, last_name = last_name)
+
         print(account)
         account.set_password(password)
         # account.is_active = False

@@ -40,6 +40,17 @@ class TuitionApplication(models.Model):
         return f"{self.applicant.username} - {self.status}"
 
 
+class ContactUs(models.Model):
+    fullname = models.CharField(max_length=100)
+    email = models.EmailField(max_length=50)
+    phone_no = models.CharField(max_length=13)
+    comments = models.TextField()
+
+    def __str__(self):
+        return self.fullname
+
+
+
 
 class Comment(models.Model):
     car = models.ForeignKey(TutionDetails, on_delete = models.CASCADE, related_name = 'comments')

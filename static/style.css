@@ -75,3 +75,23 @@
 .signup-form-style button{
   margin-top: -20px;
 }
+
+.profiles-form-style{
+  margin: 0 auto;
+  width: 50%;
+}
+.profiles-form-style input{
+  margin-bottom: 20px;
+  border-radius: 30px;
+}
+.profiles-form-style button{
+  margin-top: -20px;
+}
+
+
+/* .back_style{
+  width: 50%;
+  margin: 0 auto;
+} */
+
+

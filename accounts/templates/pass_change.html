@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %} 
 
-<form method="post" style="width: 50%;" novalidate>
+{% comment %} <form method="post" style="width: 50%;" novalidate>
       <h1>Change Your Password</h1>
       {% csrf_token %}
       {% if form.non_field_errors %}
@@ -16,5 +16,23 @@
       {% endfor %}
       <br />
       <button class="btn btn-warning" type="submit">Change Password</button>
-</form>
+</form> {% endcomment %}
+
+<div class=" container back_style">
+  <div class=" shadow p-3 mb-5 bg-white my-5 rounded-lg" style="border-radius: 50px">
+    <div class="row">
+      <h1 class="text-center pb-4">Change Your Password</h1>
+      <hr>
+      <form method="post" class="mt-2 profiles-form-style" novalidate>
+        <br>
+        {% csrf_token %}
+        <!-- {{form | crispy }} -->
+        {% for fm in form%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} {% endfor %}
+        <br />
+        <button class="btn btn-primary w-100 rounded-pill" type="submit">Submit</button>
+        <br />
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

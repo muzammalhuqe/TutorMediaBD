@@ -11,4 +11,5 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(models.Tution, CategoryAdmin)
 admin.site.register(models.TutionDetails)
 admin.site.register(models.TuitionApplication)
+admin.site.register(models.ContactUs)
 admin.site.register(models.Comment)

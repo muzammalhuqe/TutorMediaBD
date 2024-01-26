@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class=" shadow p-3 mb-5 bg-white my-5 rounded-lg" style="border-radius: 50px">
+      <div class="row">
+        <h1 class="text-center pb-4">Contact Us</h1>
+        <hr>
+        <div class="col-12 col-md-6">
+          <img style="width: 100%;" class="mt-5" src="{% static 'img/Contact.png' %}" alt="image">
+        </div>
+        <div class="col-12 col-md-6">
+          <form method="post" class="mt-2 signup-form-style" novalidate>
+            <br>
+            {% csrf_token %}
+            <!-- {{form | crispy }} -->
+            {% for fm in form%} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} {% endfor %}
+            <br />
+            <button class="btn btn-primary w-100 rounded-pill" type="submit">Submit</button>
+            <br />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% comment %} <div class="card m-2">
+    <div class="card-body w-50">
+        <form method="post">
+            <h1>Contact Us</h1>
+            {% csrf_token %} {{ form | crispy }}
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div> {% endcomment %}
+
+{% endblock %}

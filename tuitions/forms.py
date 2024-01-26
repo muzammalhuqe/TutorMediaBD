@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tution, TutionDetails,TuitionApplication, Comment
+from .models import Tution, TutionDetails,TuitionApplication, ContactUs, Comment
 
 class CategoryForm(forms.ModelForm):
     class Meta: 
@@ -18,7 +18,16 @@ class TuitionApplicationForm(forms.ModelForm):
         fields = ['applicant']
 
 
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactUs
+        fields = '__all__'
+
+
 class CommentForm(forms.ModelForm):
     class Meta: 
         model = Comment
         fields = ['name', 'email', 'body']
+
+
+    

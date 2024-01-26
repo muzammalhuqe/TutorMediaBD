@@ -7,8 +7,8 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import TutionDetails, TuitionApplication
 from django.shortcuts import render, get_object_or_404
-from .forms import CommentForm
-from .models import Comment
+from .forms import CommentForm, ContactForm
+from .models import Comment, ContactUs
 from . import forms
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -109,6 +109,24 @@ class Review(DetailView):
         context ['comment_form'] = comment_form
         return context
     
+class ContactUsView(View):
+    template_name = 'contact_page.html'
+    success_url = reverse_lazy('contact_us')
+
+    def get(self, request, *args, **kwargs):
+        form = ContactForm()
+        return render(request, self.template_name, {'form': form})
+    
+    def post(self, request, *args, **kwargs):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('contact_us')
+        
+        return render(request, self.template_name, {'form': form})
+    
+
+
 
 
 def view_comments(request, book_id):
