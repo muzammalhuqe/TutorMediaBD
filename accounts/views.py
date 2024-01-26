@@ -18,6 +18,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from .forms import UserUpdateForm
+from .models import UserAccount
 
 
 
@@ -31,6 +32,19 @@ class UserRegistrationView(CreateView):
         form.instance.created_by = self.request.user
         user = form.save(commit=False)
         user.is_active = False
+        # user.save()
+        ssc_roll = self.cleaned_data.get('ssc_roll')
+        ssc_gpa = self.cleaned_data.get('ssc_gpa')
+        hsc_roll = self.cleaned_data.get('hsc_roll')
+        hsc_gpa = self.cleaned_data.get('hsc_gpa')
+
+        UserAccount.objects.create(
+            user = user,
+            ssc_roll = ssc_roll,
+            ssc_gpa = ssc_gpa,
+            hsc_roll = hsc_roll,
+            hsc_gpa = hsc_gpa,
+        )
         user.save()
         token = default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
@@ -42,6 +56,23 @@ class UserRegistrationView(CreateView):
         email.attach_alternative(email_body, "text/html")
         email.send()
         return redirect('login')
+    
+
+    # def form_valid(self, form):
+    #     form.instance.created_by = self.request.user
+    #     user = form.save(commit=False)
+    #     user.is_active = False
+    #     user.save()
+    #     token = default_token_generator.make_token(user)
+    #     uid = urlsafe_base64_encode(force_bytes(user.pk))
+    #     confirm_link = f"https://tutormediabd.onrender.com/accounts/active/{uid}/{token}"
+    #     email_subject = "Confirm Your Email"
+    #     email_body = render_to_string('confirm_email.html', {'confirm_link' : confirm_link})
+            
+    #     email = EmailMultiAlternatives(email_subject , '', to=[user.email])
+    #     email.attach_alternative(email_body, "text/html")
+    #     email.send()
+    #     return redirect('login')
 
 
 def activate(request, uid64, token):
