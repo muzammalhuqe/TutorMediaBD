@@ -59,7 +59,6 @@ class UserUpdateForm(forms.ModelForm):
     password = None
     class Meta:
         model = User
-        # fields = '__all__'
         fields = ['first_name','last_name','email','ssc_roll','ssc_gpa','hsc_roll','hsc_gpa']
 
 
